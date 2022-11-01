@@ -23,9 +23,10 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.pl.agh.kkarpala.crewvitalapp.navigation.Screen
 
 @Composable
-fun LogingPage(navController: NavController){
+fun LoginPage(navController: NavController){
 
     val image = painterResource(id = R.drawable.bc)
 
@@ -68,7 +69,7 @@ fun LogingPage(navController: NavController){
                     )
             }
             Spacer(modifier = Modifier.padding(10.dp))
-            Button(onClick = {navController.navigate("question_page") },
+            Button(onClick = {navController.navigate(Screen.QuestionPage.withArgs(1)) },
             modifier = Modifier
                 .fillMaxWidth(0.8f)
                 .height(50.dp)) {

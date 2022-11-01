@@ -22,11 +22,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.pl.agh.kkarpala.crewvitalapp.composables.LogingPage
+import androidx.navigation.navArgument
+import com.pl.agh.kkarpala.crewvitalapp.composables.LoginPage
+import com.pl.agh.kkarpala.crewvitalapp.composables.OpenQuestionPage
 import com.pl.agh.kkarpala.crewvitalapp.composables.QuestionPage
+import com.pl.agh.kkarpala.crewvitalapp.data.models.QuestionListEntry
+import com.pl.agh.kkarpala.crewvitalapp.navigation.Screen
 import com.pl.agh.kkarpala.crewvitalapp.ui.theme.CrewVitalAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -45,10 +50,39 @@ class MainActivity : ComponentActivity() {
 fun MyApp(){
     val navController = rememberNavController()
     
-    NavHost(navController = navController, startDestination = "login_page", builder = {
+/*    NavHost(navController = navController, startDestination = "login_page", builder = {
         composable("login_page", content = { LogingPage(navController = navController)})
-        composable("question_page", content = { QuestionPage(navController = navController)})
-    })
+        composable("question_page/{questionId}",
+            content = { QuestionPage(navController = navController)},
+            arguments = listOf(navArgument("questionId"){
+                type = NavType.IntType
+            }))
+        composable("open_question_page/{questionId}",
+            content = { OpenQuestionPage(navController = navController)},
+            arguments = listOf(navArgument("questionId") {
+                type = NavType.IntType
+            }))
+    }
+    )*/
+    NavHost(navController = navController, startDestination = Screen.LoginPage.route){
+        composable(Screen.LoginPage.route){
+            LoginPage(navController = navController)
+        }
+        composable(Screen.QuestionPage.route + "/{questionId}",
+            arguments = listOf(
+                navArgument("questionId"){
+                type = NavType.IntType
+            })) { entry ->
+                QuestionPage(navController = navController, questionId = entry.arguments!!.getInt("questionId"))
+        }
+        composable(Screen.OpenQuestionPage.route+"/{questionId}",
+            arguments = listOf(
+                navArgument("questionId"){
+                    type = NavType.IntType
+                })){ entry ->
+            OpenQuestionPage(navController = navController, questionId = entry.arguments!!.getInt("questionId"))
+        }
+    }
 }
 
 /*@Composable

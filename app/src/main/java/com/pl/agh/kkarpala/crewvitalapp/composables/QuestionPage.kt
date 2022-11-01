@@ -11,19 +11,35 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
+import com.pl.agh.kkarpala.crewvitalapp.data.Constants
+import com.pl.agh.kkarpala.crewvitalapp.data.models.QuestionListEntry
+import com.pl.agh.kkarpala.crewvitalapp.navigation.Screen
 
 @Composable
-fun QuestionPage(navController: NavController){
+fun QuestionPage(navController: NavController, questionId: Int){
+
+    val questionList = Constants.getQuestions()
+    val currentQuestion = questionList!![questionId-1]
+
     Surface() {
         Column(
             modifier = Modifier
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text("How are you feeling today?", fontSize = 30.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 45.dp, bottom = 20.dp))
+            Text("${currentQuestion.question}", fontSize = 30.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 45.dp, bottom = 20.dp))
             CustomLinearProgressBar()
-            Answers(navController = navController)
+            Answers()
+            Spacer(modifier = Modifier.padding(3.dp))
+            if(questionId == questionList.size){
+                SubmitBtn(navController = navController, Screen.OpenQuestionPage.withArgs(1))
+            }
+            else{
+                SubmitBtn(navController = navController, Screen.QuestionPage.withArgs(questionId + 1))
+
+            }
         }
     }
 }
@@ -44,22 +60,51 @@ private fun CustomLinearProgressBar(){
 }
 
 @Composable
-private fun Answers(answers: List<String> = listOf("Very Good!", "Good", "Average", "Bad", "Very bad"), navController: NavController){
-   Column(
+private fun Answers(answers: List<String> = listOf("Very Good!", "Good", "Average", "Bad")){
+
+    var selectedOption by remember { mutableStateOf("")}
+    val onSelectionChange = { text : String -> selectedOption = text}
+
+
+    Column(
        modifier = Modifier
            .padding(vertical = 15.dp),
        verticalArrangement = Arrangement.Center
        ) {
-       for (answer in answers){
-            Answer(answer = answer)
-       }
+        answers.forEach {text ->
+            Row(
+                modifier = Modifier
+                    .padding(8.dp)
+            ){
+                OutlinedButton(
+                    onClick = {onSelectionChange(text)},
+                    modifier = Modifier
+                        .padding(2.dp)
+                        .fillMaxWidth(0.8f)
+                        .height(60.dp),
+                    elevation = ButtonDefaults.elevation(defaultElevation = 5.dp, pressedElevation = 0.dp, disabledElevation = 0.dp),
+                    border = BorderStroke(1.dp, if(text == selectedOption){
+                        Color.Blue
+                    } else{
+                        Color.White
+                    })
+                ){
+                    Column(modifier = Modifier.padding(10.dp),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally)
+                    {
+                        Text("$text", color = Color.Black, fontSize = 20.sp, textAlign = TextAlign.Center, )
+                    }
+                }
+
+            }
+        }
        Spacer(modifier = Modifier.padding(10.dp))
-       SubmitBtn(navController = navController)
    }
 }
 
-@Composable
-fun Answer(answer: String) {
+/*@Composable
+private fun Answer(answer: String) {
     var selected by remember { mutableStateOf(false) }
     val color = if (selected) Color.Blue else Color.White
     OutlinedButton(
@@ -78,15 +123,15 @@ fun Answer(answer: String) {
             Text("$answer", color = Color.Black, fontSize = 20.sp, textAlign = TextAlign.Center, )
         }
     }
-}
+}*/
 
 @Composable
-fun SubmitBtn(navController: NavController){
-    Button(onClick = {navController.navigate("login_page") },
+fun SubmitBtn(navController: NavController, nav_route : String){
+    Button(onClick = {navController.navigate(nav_route) },
         modifier = Modifier
             .padding(10.dp)
             .fillMaxWidth(0.8f)
-            .height(65.dp),
+            .height(50.dp),
         elevation = ButtonDefaults.elevation(defaultElevation = 5.dp, pressedElevation = 0.dp, disabledElevation = 0.dp),
     ) {
         Text(text = "Submit", fontSize = 20.sp)
