@@ -19,12 +19,12 @@ object OpenConstants {
         questionsList.add(question2)
         val question3 = OpenQuestion(
             3,
-            "What is your pulse"
+            "What is your pulse?"
         )
         questionsList.add(question3)
         val question4 = OpenQuestion(
             4,
-            "How much do you weight"
+            "How much do you weight?"
         )
         questionsList.add(question4)
         return questionsList

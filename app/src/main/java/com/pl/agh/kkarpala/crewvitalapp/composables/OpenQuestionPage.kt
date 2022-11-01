@@ -15,29 +15,54 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.pl.agh.kkarpala.crewvitalapp.data.Constants
+import com.pl.agh.kkarpala.crewvitalapp.data.OpenConstants
 import com.pl.agh.kkarpala.crewvitalapp.data.models.QuestionListEntry
 import com.pl.agh.kkarpala.crewvitalapp.navigation.Screen
 
 @Composable
 fun OpenQuestionPage(navController: NavController, questionId: Int){
 
+    val openQuestionList = OpenConstants.getQuestions()
+    val currentQuestion = openQuestionList!![questionId-1]
+
     Surface() {
         Column(
             modifier = Modifier
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
-        ){
-            Text("${questionId}", fontSize = 30.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 45.dp, bottom = 20.dp))
-            CustomLinearProgressBar()
+        ) {
+            Text(
+                "${currentQuestion.question}",
+                fontSize = 30.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(top = 45.dp, bottom = 20.dp),
+                textAlign = TextAlign.Center
+            )
+            CustomLinearProgressBar(questionId-1)
             Answer()
             Spacer(modifier = Modifier.padding(2.dp))
-            SubmitBtn(navController = navController, Screen.LoginPage.route)
+        }
+        Column(modifier = Modifier
+            .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Bottom
+        ){
+            if (questionId == openQuestionList.size) {
+                SubmitBtn(navController = navController, Screen.LoginPage.route)
+            } else {
+                SubmitBtn(
+                    navController = navController,
+                    Screen.OpenQuestionPage.withArgs(questionId + 1)
+                )
+            }
+            Spacer(modifier = Modifier.padding(50.dp))
         }
     }
 }
 
 @Composable
-private fun CustomLinearProgressBar(){
+private fun CustomLinearProgressBar(progress: Int){
     Column(modifier = Modifier.fillMaxWidth()) {
         LinearProgressIndicator(
             modifier = Modifier
@@ -46,7 +71,7 @@ private fun CustomLinearProgressBar(){
                 .padding(start = 30.dp, end = 30.dp),
             backgroundColor = Color.LightGray,
             color = Color.Green,
-            progress = 0.3f
+            progress = (progress+4)/8f
         )
     }
 }

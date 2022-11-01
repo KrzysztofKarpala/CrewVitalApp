@@ -26,26 +26,41 @@ fun QuestionPage(navController: NavController, questionId: Int){
     Surface() {
         Column(
             modifier = Modifier
+            .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Top
+        ) {
+            Text("${currentQuestion.question}", fontSize = 30.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 45.dp, bottom = 20.dp), textAlign = TextAlign.Center)
+            CustomLinearProgressBar(questionId-1)
+        }
+        Column(
+            modifier = Modifier
                 .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ){
-            Text("${currentQuestion.question}", fontSize = 30.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 45.dp, bottom = 20.dp))
-            CustomLinearProgressBar()
-            Answers()
+            Answers(currentQuestion.answers)
             Spacer(modifier = Modifier.padding(3.dp))
+        }
+        Column(
+            modifier = Modifier
+                .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Bottom
+        ) {
             if(questionId == questionList.size){
                 SubmitBtn(navController = navController, Screen.OpenQuestionPage.withArgs(1))
             }
             else{
                 SubmitBtn(navController = navController, Screen.QuestionPage.withArgs(questionId + 1))
-
             }
+            Spacer(modifier = Modifier.padding(50.dp))
         }
     }
 }
 
 @Composable
-private fun CustomLinearProgressBar(){
+private fun CustomLinearProgressBar(progress: Int){
     Column(modifier = Modifier.fillMaxWidth()) {
         LinearProgressIndicator(
             modifier = Modifier
@@ -54,13 +69,13 @@ private fun CustomLinearProgressBar(){
                 .padding(start = 30.dp, end = 30.dp),
             backgroundColor = Color.LightGray,
             color = Color.Green,
-            progress = 0.3f
+            progress = progress/8f
         )
     }
 }
 
 @Composable
-private fun Answers(answers: List<String> = listOf("Very Good!", "Good", "Average", "Bad")){
+private fun Answers(answers: List<String>){
 
     var selectedOption by remember { mutableStateOf("")}
     val onSelectionChange = { text : String -> selectedOption = text}
