@@ -54,7 +54,7 @@ fun QuestionPage(navController: NavController, questionId: Int){
             else{
                 SubmitBtn(navController = navController, Screen.QuestionPage.withArgs(questionId + 1))
             }
-            Spacer(modifier = Modifier.padding(50.dp))
+            Spacer(modifier = Modifier.padding(38.dp))
         }
     }
 }
@@ -117,28 +117,6 @@ private fun Answers(answers: List<String>){
        Spacer(modifier = Modifier.padding(10.dp))
    }
 }
-
-/*@Composable
-private fun Answer(answer: String) {
-    var selected by remember { mutableStateOf(false) }
-    val color = if (selected) Color.Blue else Color.White
-    OutlinedButton(
-        modifier = Modifier
-            .padding(10.dp)
-            .fillMaxWidth(0.8f)
-            .height(60.dp),
-        elevation = ButtonDefaults.elevation(defaultElevation = 5.dp, pressedElevation = 0.dp, disabledElevation = 0.dp),
-        onClick = {selected =! selected},
-        border = BorderStroke(1.dp, color)
-    ){
-        Column(modifier = Modifier.padding(10.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally)
-        {
-            Text("$answer", color = Color.Black, fontSize = 20.sp, textAlign = TextAlign.Center, )
-        }
-    }
-}*/
 
 @Composable
 fun SubmitBtn(navController: NavController, nav_route : String){

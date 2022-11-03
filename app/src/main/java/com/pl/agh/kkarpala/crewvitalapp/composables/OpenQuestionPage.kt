@@ -1,6 +1,7 @@
 package com.pl.agh.kkarpala.crewvitalapp.composables
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -26,7 +27,7 @@ fun OpenQuestionPage(navController: NavController, questionId: Int){
     val openQuestionList = OpenConstants.getQuestions()
     val currentQuestion = openQuestionList!![questionId-1]
 
-    Surface() {
+/*    Surface() {
         Column(
             modifier = Modifier
                 .fillMaxSize(),
@@ -48,6 +49,44 @@ fun OpenQuestionPage(navController: NavController, questionId: Int){
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Bottom
         ){
+            if (questionId == openQuestionList.size) {
+                SubmitBtn(navController = navController, Screen.LoginPage.route)
+            } else {
+                SubmitBtn(
+                    navController = navController,
+                    Screen.OpenQuestionPage.withArgs(questionId + 1)
+                )
+            }
+            Spacer(modifier = Modifier.padding(50.dp))
+        }
+    }*/
+
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
+        Box(modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White), contentAlignment = Alignment.TopCenter)
+        {
+            Text(
+                "${currentQuestion.question}",
+                fontSize = 30.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(top = 45.dp, bottom = 20.dp),
+                textAlign = TextAlign.Center
+            )
+            CustomLinearProgressBar(questionId - 1)
+        }
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(0.68f)
+                .clip(RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp))
+                .background(color = Color.White)
+                .padding(10.dp)
+        )
+            {
+            Answer()
             if (questionId == openQuestionList.size) {
                 SubmitBtn(navController = navController, Screen.LoginPage.route)
             } else {
