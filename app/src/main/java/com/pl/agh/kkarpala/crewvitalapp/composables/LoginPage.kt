@@ -32,6 +32,8 @@ fun LoginPage(navController: NavController){
 
     val name = remember { mutableStateOf("")}
 
+    var nameHasError = false
+
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter)
     {
         Box(modifier = Modifier
@@ -61,15 +63,20 @@ fun LoginPage(navController: NavController){
             )
             Spacer(modifier = Modifier.padding(20.dp))
             Column(horizontalAlignment = Alignment.CenterHorizontally){
-                OutlinedTextField(value = name.value, onValueChange = {name.value = it},
-                label = {Text(text = "Name")},
+                OutlinedTextField(
+                    value = name.value,
+                    onValueChange = {name.value = it},
+                    label = {Text(text = "Name")},
                     placeholder = {Text(text = "Name")},
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(0.8f)
-                    )
+                )
+                if(name.value != ""){
+                    nameHasError = true
+                }
             }
             Spacer(modifier = Modifier.padding(10.dp))
-            Button(onClick = {navController.navigate(Screen.QuestionPage.withArgs(1)) },
+            Button(enabled = nameHasError, onClick = {navController.navigate(Screen.QuestionPage.withArgs(1)) },
             modifier = Modifier
                 .fillMaxWidth(0.8f)
                 .height(50.dp)) {

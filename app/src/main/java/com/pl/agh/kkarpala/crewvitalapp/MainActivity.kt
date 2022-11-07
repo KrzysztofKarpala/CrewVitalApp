@@ -30,6 +30,7 @@ import androidx.navigation.navArgument
 import com.pl.agh.kkarpala.crewvitalapp.composables.LoginPage
 import com.pl.agh.kkarpala.crewvitalapp.composables.OpenQuestionPage
 import com.pl.agh.kkarpala.crewvitalapp.composables.QuestionPage
+import com.pl.agh.kkarpala.crewvitalapp.composables.ResultPage
 import com.pl.agh.kkarpala.crewvitalapp.data.models.QuestionListEntry
 import com.pl.agh.kkarpala.crewvitalapp.navigation.Screen
 import com.pl.agh.kkarpala.crewvitalapp.ui.theme.CrewVitalAppTheme
@@ -81,6 +82,9 @@ fun MyApp(){
                     type = NavType.IntType
                 })){ entry ->
             OpenQuestionPage(navController = navController, questionId = entry.arguments!!.getInt("questionId"))
+        }
+        composable(Screen.ResultPage.route){
+            ResultPage(navController = navController)
         }
     }
 }

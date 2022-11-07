@@ -22,6 +22,10 @@ fun QuestionPage(navController: NavController, questionId: Int){
 
     val questionList = Constants.getQuestions()
     val currentQuestion = questionList!![questionId-1]
+    var selectedOption by remember { mutableStateOf("")}
+    var answerSelected = false
+    val onSelectionChange = { text : String -> selectedOption = text}
+
 
     Surface() {
         Column(
@@ -39,7 +43,45 @@ fun QuestionPage(navController: NavController, questionId: Int){
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ){
-            Answers(currentQuestion.answers)
+            //Answers(currentQuestion.answers)
+            Column(
+                modifier = Modifier
+                    .padding(vertical = 15.dp),
+                verticalArrangement = Arrangement.Center
+            ) {
+                currentQuestion.answers.forEach {text ->
+                    Row(
+                        modifier = Modifier
+                            .padding(8.dp)
+                    ){
+                        OutlinedButton(
+                            onClick = {onSelectionChange(text)},
+                            modifier = Modifier
+                                .padding(2.dp)
+                                .fillMaxWidth(0.8f)
+                                .height(60.dp),
+                            elevation = ButtonDefaults.elevation(defaultElevation = 5.dp, pressedElevation = 0.dp, disabledElevation = 0.dp),
+                            border = BorderStroke(1.dp, if(text == selectedOption){
+                                Color.Blue
+                            } else{
+                                Color.White
+                            })
+                        )
+                        {
+                            Column(modifier = Modifier.padding(10.dp),
+                                verticalArrangement = Arrangement.Center,
+                                horizontalAlignment = Alignment.CenterHorizontally)
+                            {
+                                Text("$text", color = Color.Black, fontSize = 20.sp, textAlign = TextAlign.Center, )
+                            }
+                            if(selectedOption != ""){
+                                answerSelected = true
+                            }
+                        }
+                    }
+                }
+                Spacer(modifier = Modifier.padding(10.dp))
+            }
             Spacer(modifier = Modifier.padding(3.dp))
         }
         Column(
@@ -49,10 +91,10 @@ fun QuestionPage(navController: NavController, questionId: Int){
             verticalArrangement = Arrangement.Bottom
         ) {
             if(questionId == questionList.size){
-                SubmitBtn(navController = navController, Screen.OpenQuestionPage.withArgs(1))
+                SubmitBtn(answerSelected, navController = navController, Screen.OpenQuestionPage.withArgs(1))
             }
             else{
-                SubmitBtn(navController = navController, Screen.QuestionPage.withArgs(questionId + 1))
+                SubmitBtn(answerSelected, navController = navController, Screen.QuestionPage.withArgs(questionId + 1))
             }
             Spacer(modifier = Modifier.padding(38.dp))
         }
@@ -74,7 +116,7 @@ private fun CustomLinearProgressBar(progress: Int){
     }
 }
 
-@Composable
+/*@Composable
 private fun Answers(answers: List<String>){
 
     var selectedOption by remember { mutableStateOf("")}
@@ -116,11 +158,11 @@ private fun Answers(answers: List<String>){
         }
        Spacer(modifier = Modifier.padding(10.dp))
    }
-}
+}*/
 
 @Composable
-fun SubmitBtn(navController: NavController, nav_route : String){
-    Button(onClick = {navController.navigate(nav_route) },
+fun SubmitBtn(answerIsEmpty: Boolean, navController: NavController, nav_route : String){
+    Button(enabled = answerIsEmpty, onClick = {navController.navigate(nav_route) },
         modifier = Modifier
             .padding(10.dp)
             .fillMaxWidth(0.8f)
