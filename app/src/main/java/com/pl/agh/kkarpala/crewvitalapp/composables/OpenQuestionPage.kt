@@ -68,7 +68,8 @@ fun OpenQuestionPage(navController: NavController, questionId: Int){
                         .background(color = Color.White)
                         .padding(10.dp)
                 ){
-                    OutlinedTextField(value = answer.value, onValueChange = {if(answer.value.isDigitsOnly()){answer.value = it}},
+                    //OutlinedTextField(value = answer.value, onValueChange = {if(it.isDigitsOnly()){answer.value = it}else{answer.value = it.dropLast(1)} },
+                    OutlinedTextField(value = answer.value, onValueChange = {answer.value = it},
                         label = {Text(text = "Answer")},
                         placeholder = {Text(text = "Answer")},
                         singleLine = true,

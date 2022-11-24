@@ -23,6 +23,8 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.pl.agh.kkarpala.crewvitalapp.data.models.QuestionAppDto
+import com.pl.agh.kkarpala.crewvitalapp.infrastructure.QuestionAppEntity
 import com.pl.agh.kkarpala.crewvitalapp.navigation.Screen
 
 @Composable
@@ -34,6 +36,8 @@ fun LoginPage(navController: NavController){
 
     var nameHasError = false
 
+    var questionAppAnswer = QuestionAppDto("", "", "", "", "", 0, 0, 0, 0,)
+
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter)
     {
         Box(modifier = Modifier
@@ -42,7 +46,6 @@ fun LoginPage(navController: NavController){
         {
             Image(image, contentDescription = null)
         }
-
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
@@ -76,7 +79,7 @@ fun LoginPage(navController: NavController){
                 }
             }
             Spacer(modifier = Modifier.padding(10.dp))
-            Button(enabled = nameHasError, onClick = {navController.navigate(Screen.QuestionPage.withArgs(1)) },
+            Button(enabled = nameHasError, onClick = { questionAppAnswer.userName = name.value; navController.navigate(Screen.QuestionPage.withArgs(1)) },
             modifier = Modifier
                 .fillMaxWidth(0.8f)
                 .height(50.dp)) {
