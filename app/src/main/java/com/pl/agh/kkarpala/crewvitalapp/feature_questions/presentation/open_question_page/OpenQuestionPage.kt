@@ -1,7 +1,5 @@
-package com.pl.agh.kkarpala.crewvitalapp.composables
+package com.pl.agh.kkarpala.crewvitalapp.feature_questions.composables
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -15,15 +13,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.text.isDigitsOnly
 import androidx.navigation.NavController
-import com.pl.agh.kkarpala.crewvitalapp.data.Constants
-import com.pl.agh.kkarpala.crewvitalapp.data.OpenConstants
-import com.pl.agh.kkarpala.crewvitalapp.data.models.QuestionListEntry
-import com.pl.agh.kkarpala.crewvitalapp.navigation.Screen
+import com.pl.agh.kkarpala.crewvitalapp.core.questions.OpenConstants
+import com.pl.agh.kkarpala.crewvitalapp.feature_questions.navigation.Screen
 @Composable
 fun OpenQuestionPage(navController: NavController, questionId: Int){
 

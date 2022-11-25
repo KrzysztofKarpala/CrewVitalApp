@@ -1,13 +1,12 @@
-package com.pl.agh.kkarpala.crewvitalapp.composables
+package com.pl.agh.kkarpala.crewvitalapp.feature_questions.composables
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -15,28 +14,55 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import com.pl.agh.kkarpala.crewvitalapp.R
-import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.pl.agh.kkarpala.crewvitalapp.data.models.QuestionAppDto
-import com.pl.agh.kkarpala.crewvitalapp.infrastructure.QuestionAppEntity
-import com.pl.agh.kkarpala.crewvitalapp.navigation.Screen
+import com.pl.agh.kkarpala.crewvitalapp.feature_questions.domain.model.QuestionAppDto
+import com.pl.agh.kkarpala.crewvitalapp.feature_questions.navigation.Screen
+import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.login_page.LoginPageEvent
+import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.login_page.LoginPageViewModel
+import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.login_page.composable.EnterNameTextField
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
-fun LoginPage(navController: NavController){
+fun LoginPage(
+    navController: NavController,
+    viewModel: LoginPageViewModel = hiltViewModel()
+){
+
+    val nameState = viewModel.name.value
+
+    val scaffoldState = rememberScaffoldState()
 
     val image = painterResource(id = R.drawable.bc)
 
+/*
     val name = remember { mutableStateOf("")}
 
-    var nameHasError = false
+    var nameHasError = true
 
     var questionAppAnswer = QuestionAppDto("", "", "", "", "", 0, 0, 0, 0,)
+*/
+
+    LaunchedEffect(key1 = true){
+        viewModel.eventFlow.collectLatest { event ->
+            when(event){
+                is LoginPageViewModel.UiEvent.ShowSnackbar -> {
+                    scaffoldState.snackbarHostState.showSnackbar(
+                        message = event.message
+                    )
+                }
+                is LoginPageViewModel.UiEvent.SaveName -> {
+                    navController.navigate(
+                        Screen.QuestionPage.withArgs(1))
+                }
+            }
+        }
+    }
 
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter)
     {
@@ -66,7 +92,7 @@ fun LoginPage(navController: NavController){
             )
             Spacer(modifier = Modifier.padding(20.dp))
             Column(horizontalAlignment = Alignment.CenterHorizontally){
-                OutlinedTextField(
+/*                OutlinedTextField(
                     value = name.value,
                     onValueChange = {name.value = it},
                     label = {Text(text = "Name")},
@@ -75,14 +101,36 @@ fun LoginPage(navController: NavController){
                     modifier = Modifier.fillMaxWidth(0.8f)
                 )
                 if(name.value != ""){
-                    nameHasError = true
-                }
+                    nameHasError = false
+                }*/
+                EnterNameTextField(
+                    text = nameState.name,
+                    hint = nameState.hint,
+                    onValueChange = {
+                                    viewModel.onEvent(LoginPageEvent.EnteredName(it))
+                    },
+                    onFocusChange = {
+                        viewModel.onEvent(LoginPageEvent.ChangeNameFocus(it))
+                    },
+                    isHintVisible = nameState.isHintVisible,
+                    singleLine = true,
+                    textStyle = MaterialTheme.typography.h5
+                )
             }
             Spacer(modifier = Modifier.padding(10.dp))
-            Button(enabled = nameHasError, onClick = { questionAppAnswer.userName = name.value; navController.navigate(Screen.QuestionPage.withArgs(1)) },
+/*            Button( onClick = { questionAppAnswer.userName = name.value; navController.navigate(
+                Screen.QuestionPage.withArgs(1)) },
             modifier = Modifier
                 .fillMaxWidth(0.8f)
                 .height(50.dp)) {
+                Text(text = "Start", fontSize = 20.sp)
+            }*/
+            Button( onClick = {
+                              viewModel.onEvent(LoginPageEvent.SaveName)
+            },
+                modifier = Modifier
+                    .fillMaxWidth(0.8f)
+                    .height(50.dp)) {
                 Text(text = "Start", fontSize = 20.sp)
             }
         }

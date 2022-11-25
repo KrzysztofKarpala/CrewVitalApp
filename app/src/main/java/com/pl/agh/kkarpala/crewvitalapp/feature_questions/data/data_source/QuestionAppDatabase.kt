@@ -1,19 +1,26 @@
-package com.pl.agh.kkarpala.crewvitalapp.infrastructure
+package com.pl.agh.kkarpala.crewvitalapp.feature_questions.data.data_source
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.pl.agh.kkarpala.crewvitalapp.feature_questions.domain.model.QuestionAppAnswer
 
-@Database(entities = [QuestionAppEntity::class], version = 1, exportSchema = false)
+
+@Database(
+    entities = [QuestionAppAnswer::class],
+    version = 1
+)
+
 abstract class QuestionAppDatabase : RoomDatabase() {
-    abstract fun questionAppDao(): QuestionAppDatabaseDao
+
+    abstract val questionAppDao: QuestionAppDatabaseDao
 
     companion object {
 
-        private var INSTANCE: QuestionAppDatabase? = null
+        //private var INSTANCE: QuestionAppDatabase? = null
 
-        fun getInstance(context: Context): QuestionAppDatabase {
+/*        fun getInstance(context: Context): QuestionAppDatabase {
             synchronized(this) {
                 var instance = INSTANCE
 
@@ -29,6 +36,7 @@ abstract class QuestionAppDatabase : RoomDatabase() {
                 }
                 return instance
             }
-        }
+        }*/
+        const val DATABASE_NAME = "question_app_db"
     }
 }

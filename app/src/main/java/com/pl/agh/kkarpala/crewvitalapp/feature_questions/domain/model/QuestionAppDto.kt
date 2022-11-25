@@ -1,7 +1,4 @@
-package com.pl.agh.kkarpala.crewvitalapp.data.models
-
-import androidx.room.ColumnInfo
-import androidx.room.PrimaryKey
+package com.pl.agh.kkarpala.crewvitalapp.feature_questions.domain.model
 
 data class QuestionAppDto(
 

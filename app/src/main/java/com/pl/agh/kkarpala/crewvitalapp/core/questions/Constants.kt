@@ -1,6 +1,6 @@
-package com.pl.agh.kkarpala.crewvitalapp.data
+package com.pl.agh.kkarpala.crewvitalapp.core.questions
 
-import com.pl.agh.kkarpala.crewvitalapp.data.models.Question
+import com.pl.agh.kkarpala.crewvitalapp.feature_questions.domain.model.Question
 
 object Constants {
     const val USER_NAME: String = "user_name"

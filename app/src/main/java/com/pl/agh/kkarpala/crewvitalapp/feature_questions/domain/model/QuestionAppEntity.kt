@@ -1,9 +1,10 @@
-package com.pl.agh.kkarpala.crewvitalapp.infrastructure
+package com.pl.agh.kkarpala.crewvitalapp.feature_questions.domain.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/*
 @Entity(tableName = "answers_list")
 data class QuestionAppEntity(
 
@@ -36,4 +37,4 @@ data class QuestionAppEntity(
 
     @ColumnInfo(name = "question_8")
     val question_8: Int,
-)
+)*/

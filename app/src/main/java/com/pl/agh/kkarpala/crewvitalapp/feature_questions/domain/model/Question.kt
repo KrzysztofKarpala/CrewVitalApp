@@ -1,4 +1,4 @@
-package com.pl.agh.kkarpala.crewvitalapp.data.models
+package com.pl.agh.kkarpala.crewvitalapp.feature_questions.domain.model
 
 data class Question (
     val id: Int,

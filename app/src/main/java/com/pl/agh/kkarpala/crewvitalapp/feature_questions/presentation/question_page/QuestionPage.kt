@@ -1,4 +1,4 @@
-package com.pl.agh.kkarpala.crewvitalapp.composables
+package com.pl.agh.kkarpala.crewvitalapp.feature_questions.composables
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
@@ -11,11 +11,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
-import com.pl.agh.kkarpala.crewvitalapp.data.Constants
-import com.pl.agh.kkarpala.crewvitalapp.data.models.QuestionListEntry
-import com.pl.agh.kkarpala.crewvitalapp.navigation.Screen
+import com.pl.agh.kkarpala.crewvitalapp.core.questions.Constants
+import com.pl.agh.kkarpala.crewvitalapp.feature_questions.navigation.Screen
 
 @Composable
 fun QuestionPage(navController: NavController, questionId: Int){
