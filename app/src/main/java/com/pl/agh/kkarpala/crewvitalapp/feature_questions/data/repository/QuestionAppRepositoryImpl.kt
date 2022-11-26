@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.Flow
 class QuestionAppRepositoryImpl (
     private val dao: QuestionAppDatabaseDao
         ) : QuestionAppRepository {
+
     override fun getAnswers(): Flow<List<QuestionAppAnswer>> {
         return dao.getAllAnswers()
     }

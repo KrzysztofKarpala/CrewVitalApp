@@ -11,7 +11,6 @@ import com.pl.agh.kkarpala.crewvitalapp.feature_questions.domain.model.QuestionA
     entities = [QuestionAppAnswer::class],
     version = 1
 )
-
 abstract class QuestionAppDatabase : RoomDatabase() {
 
     abstract val questionAppDao: QuestionAppDatabaseDao

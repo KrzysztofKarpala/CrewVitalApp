@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.domain.model.QuestionAppDto
-import com.pl.agh.kkarpala.crewvitalapp.feature_questions.navigation.Screen
+import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.navigation.Screen
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.login_page.LoginPageEvent
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.login_page.LoginPageViewModel
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.login_page.composable.EnterNameTextField

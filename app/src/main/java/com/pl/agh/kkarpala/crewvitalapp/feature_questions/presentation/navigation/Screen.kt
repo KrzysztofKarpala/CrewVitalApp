@@ -1,4 +1,4 @@
-package com.pl.agh.kkarpala.crewvitalapp.feature_questions.navigation
+package com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.navigation
 
 sealed class Screen(val route: String) {
     object LoginPage : Screen("login_page")

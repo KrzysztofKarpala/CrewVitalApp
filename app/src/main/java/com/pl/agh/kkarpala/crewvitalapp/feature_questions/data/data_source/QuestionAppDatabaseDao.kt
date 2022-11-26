@@ -6,7 +6,8 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface QuestionAppDatabaseDao {
-    @Query("SELECT * from QuestionAppAnswer")
+
+    @Query("SELECT * FROM QuestionAppAnswer")
     fun getAllAnswers(): Flow<List<QuestionAppAnswer>>
 
     @Query("SELECT * from QuestionAppAnswer where answerId = :id")

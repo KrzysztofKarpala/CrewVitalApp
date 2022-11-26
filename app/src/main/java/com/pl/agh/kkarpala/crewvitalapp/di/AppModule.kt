@@ -5,10 +5,7 @@ import androidx.room.Room
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.data.data_source.QuestionAppDatabase
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.data.repository.QuestionAppRepositoryImpl
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.domain.repository.QuestionAppRepository
-import com.pl.agh.kkarpala.crewvitalapp.feature_questions.domain.use_case.DeleteAnswer
-import com.pl.agh.kkarpala.crewvitalapp.feature_questions.domain.use_case.GetAnswer
-import com.pl.agh.kkarpala.crewvitalapp.feature_questions.domain.use_case.InsertAnswer
-import com.pl.agh.kkarpala.crewvitalapp.feature_questions.domain.use_case.QuestionAppUseCases
+import com.pl.agh.kkarpala.crewvitalapp.feature_questions.domain.use_case.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -39,6 +36,7 @@ object AppModule {
     @Singleton
     fun provideNoteUseCases(repository: QuestionAppRepository): QuestionAppUseCases{
         return QuestionAppUseCases(
+            getAnswers = GetAnswers(repository),
             deleteAnswer = DeleteAnswer(repository),
             insertAnswer = InsertAnswer(repository),
             getAnswer = GetAnswer(repository)
