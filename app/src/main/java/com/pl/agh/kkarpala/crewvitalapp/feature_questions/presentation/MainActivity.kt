@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.runtime.*
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -15,7 +13,7 @@ import com.pl.agh.kkarpala.crewvitalapp.feature_questions.composables.LoginPage
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.composables.OpenQuestionPage
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.composables.QuestionPage
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.composables.ResultPage
-import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.navigation.Screen
+import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.util.Screen
 import com.pl.agh.kkarpala.crewvitalapp.ui.theme.CrewVitalAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 

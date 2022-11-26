@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.pl.agh.kkarpala.crewvitalapp.core.questions.OpenConstants
-import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.navigation.Screen
+import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.util.Screen
 @Composable
 fun OpenQuestionPage(navController: NavController, questionId: Int){
 

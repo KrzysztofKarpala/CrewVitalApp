@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.pl.agh.kkarpala.crewvitalapp.R
-import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.navigation.Screen
+import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.util.Screen
 
 
 @Composable

@@ -44,8 +44,6 @@ class LoginPageViewModel @Inject constructor(
                     }
                 }
             }
-
-
         }
     }
 
@@ -82,7 +80,7 @@ class LoginPageViewModel @Inject constructor(
                         _eventFlow.emit(UiEvent.SaveName)
                     } catch(ex: InvalidAnswerException){
                         _eventFlow.emit(
-                            UiEvent.ShowSnackbar(
+                            UiEvent.ShowToast(
                                 message = ex.message ?: "Empty name"
                             )
                         )
@@ -94,6 +92,6 @@ class LoginPageViewModel @Inject constructor(
 
     sealed class UiEvent{
         object SaveName: UiEvent()
-        data class ShowSnackbar(val message: String): UiEvent()
+        data class ShowToast(val message: String): UiEvent()
     }
 }
