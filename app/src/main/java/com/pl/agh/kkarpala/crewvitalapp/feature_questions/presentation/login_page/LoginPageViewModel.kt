@@ -47,7 +47,7 @@ class LoginPageViewModel @Inject constructor(
         }
     }
 
-    fun onEvent(event: LoginPageEvent){
+    fun onEventLogin(event: LoginPageEvent){
         when(event){
             is LoginPageEvent.EnteredName -> {
                 _name.value = name.value.copy(
@@ -70,10 +70,10 @@ class LoginPageViewModel @Inject constructor(
                                 question_2 = "",
                                 question_3 = "",
                                 question_4 = "",
-                                question_5 = 0,
-                                question_6 = 0,
-                                question_7 = 0,
-                                question_8 = 0,
+                                question_5 = "",
+                                question_6 = "",
+                                question_7 = "",
+                                question_8 = "",
                                 answerId = currentAnswerId
                             )
                         )

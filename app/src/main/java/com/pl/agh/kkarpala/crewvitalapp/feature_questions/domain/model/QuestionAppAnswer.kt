@@ -18,13 +18,13 @@ data class QuestionAppAnswer (
 
     val question_4: String,
 
-    val question_5: Int,
+    val question_5: String,
 
-    val question_6: Int,
+    val question_6: String,
 
-    val question_7: Int,
+    val question_7: String,
 
-    val question_8: Int,
+    val question_8: String,
 )
 
 class InvalidAnswerException(message: String): Exception(message)

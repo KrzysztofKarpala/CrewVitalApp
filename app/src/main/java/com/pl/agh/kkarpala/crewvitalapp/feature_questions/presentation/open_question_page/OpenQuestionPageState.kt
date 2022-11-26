@@ -5,9 +5,10 @@ import com.pl.agh.kkarpala.crewvitalapp.feature_questions.domain.model.OpenQuest
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.domain.model.QuestionAppAnswer
 
 data class OpenQuestionPageState(
-    val questionAnswer : QuestionAppAnswer = QuestionAppAnswer(0,"","","","","", 0,0,0,0),
-    val answerIsEmpty: Boolean = true,
+    val questionAnswer : QuestionAppAnswer = QuestionAppAnswer(0,"","","","","", "","","",""),
     val openQuestionList: List<OpenQuestion> = OpenConstants.getQuestions(),
     val questionId: Int = 1,
-    val answer: String = ""
+    val answer: String = "",
+    val hint: String = "",
+    val isHintVisible: Boolean = true
 )

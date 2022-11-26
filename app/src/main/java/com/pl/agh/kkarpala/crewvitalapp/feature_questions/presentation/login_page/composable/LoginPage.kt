@@ -111,10 +111,10 @@ fun LoginPage(
                     text = nameState.name,
                     hint = nameState.hint,
                     onValueChange = {
-                                    viewModel.onEvent(LoginPageEvent.EnteredName(it))
+                                    viewModel.onEventLogin(LoginPageEvent.EnteredName(it))
                     },
                     onFocusChange = {
-                        viewModel.onEvent(LoginPageEvent.ChangeNameFocus(it))
+                        viewModel.onEventLogin(LoginPageEvent.ChangeNameFocus(it))
                     },
                     isHintVisible = nameState.isHintVisible,
                     singleLine = true,
@@ -130,7 +130,7 @@ fun LoginPage(
                 Text(text = "Start", fontSize = 20.sp)
             }*/
             Button( onClick = {
-                              viewModel.onEvent(LoginPageEvent.SaveName)
+                              viewModel.onEventLogin(LoginPageEvent.SaveName)
             },
                 modifier = Modifier
                     .fillMaxWidth(0.8f)
