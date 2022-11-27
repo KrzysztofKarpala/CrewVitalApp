@@ -21,30 +21,35 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.pl.agh.kkarpala.crewvitalapp.core.questions.SharedDataManager
+import com.pl.agh.kkarpala.crewvitalapp.feature_questions.data.data_source.QuestionAppDatabase.Companion.getInstance
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.util.Screen
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.login_page.LoginPageEvent
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.login_page.LoginPageViewModel
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.login_page.composable.EnterNameTextField
 import kotlinx.coroutines.flow.collectLatest
+import kotlin.random.Random
 
 @Composable
 fun LoginPage(
     navController: NavController,
-    viewModel: LoginPageViewModel = hiltViewModel()
+    viewModel: LoginPageViewModel = hiltViewModel(),
+    sharedDataManager: SharedDataManager
 ){
-
     val nameState = viewModel.name.value
 
 
     val image = painterResource(id = R.drawable.bc)
 
     val context = LocalContext.current
+
+    sharedDataManager.addIdToQuestionAppAnswer(Random.nextInt(from = 0, until = Int.MAX_VALUE-1))
+
 /*
     val name = remember { mutableStateOf("")}
 
     var nameHasError = true
 
-    var questionAppAnswer = QuestionAppDto("", "", "", "", "", 0, 0, 0, 0,)
 */
 
     LaunchedEffect(key1 = true){
@@ -112,6 +117,7 @@ fun LoginPage(
                     hint = nameState.hint,
                     onValueChange = {
                                     viewModel.onEventLogin(LoginPageEvent.EnteredName(it))
+                                    sharedDataManager.addNameToQuestionAppAnswer(it)
                     },
                     onFocusChange = {
                         viewModel.onEventLogin(LoginPageEvent.ChangeNameFocus(it))

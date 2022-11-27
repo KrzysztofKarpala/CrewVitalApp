@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.domain.model.InvalidAnswerException
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.domain.model.QuestionAppAnswer
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.domain.use_case.QuestionAppUseCases
+import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.result_page.ResultPageState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -24,6 +25,9 @@ class OpenQuestionPageViewModel @Inject constructor(
         hint = "Enter your answer"
     ))
     val answerOpen: State<OpenQuestionPageState> = _answerOpen
+
+    private val _answer = mutableStateOf(OpenQuestionPageState())
+    val answer: State<OpenQuestionPageState> = _answer
 
     private val _eventFlow = MutableSharedFlow<UiEventOpen>()
     val eventFlow = _eventFlow.asSharedFlow()
@@ -64,16 +68,16 @@ class OpenQuestionPageViewModel @Inject constructor(
                     try {
                         questionAppUseCases.insertAnswer(
                             QuestionAppAnswer(
-                                userName = "",
-                                question_1 = "",
-                                question_2 = "",
-                                question_3 = "",
-                                question_4 = "",
-                                question_5 = answerOpen.value.answer,
-                                question_6 = "",
-                                question_7 = "",
-                                question_8 = "",
-                                answerId = currentAnswerId
+                                userName = _answer.value.questionAnswer.userName,
+                                question_1 = _answer.value.questionAnswer.question_1,
+                                question_2 = _answer.value.questionAnswer.question_2,
+                                question_3 = _answer.value.questionAnswer.question_3,
+                                question_4 = _answer.value.questionAnswer.question_4,
+                                question_5 = _answer.value.questionAnswer.question_5,
+                                question_6 = _answer.value.questionAnswer.question_6,
+                                question_7 = _answer.value.questionAnswer.question_7,
+                                question_8 = _answer.value.questionAnswer.question_8,
+                                answerId = _answer.value.questionAnswer.answerId
                             )
                         )
                         _eventFlow.emit(UiEventOpen.SaveOpenAnswer)
@@ -88,9 +92,8 @@ class OpenQuestionPageViewModel @Inject constructor(
             }
         }
     }
-}
-
-sealed class UiEventOpen{
-    object SaveOpenAnswer: UiEventOpen()
-    data class ShowToast(val message: String): UiEventOpen()
+    sealed class UiEventOpen{
+        object SaveOpenAnswer: UiEventOpen()
+        data class ShowToast(val message: String): UiEventOpen()
+    }
 }

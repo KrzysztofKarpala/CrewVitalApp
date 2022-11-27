@@ -10,7 +10,7 @@ class InsertAnswer(
     @Throws(InvalidAnswerException::class)
     suspend operator fun invoke(answer: QuestionAppAnswer) {
         if(answer.userName.isBlank()){
-            throw InvalidAnswerException("The name can't be empty.")
+            throw InvalidAnswerException("The answer can't be empty.")
         }
         repository.insertAnswer(answer)
     }

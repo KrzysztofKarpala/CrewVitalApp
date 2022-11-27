@@ -13,10 +13,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.pl.agh.kkarpala.crewvitalapp.core.questions.Constants
+import com.pl.agh.kkarpala.crewvitalapp.core.questions.SharedDataManager
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.util.Screen
 
 @Composable
-fun QuestionPage(navController: NavController, questionId: Int){
+fun QuestionPage(navController: NavController, questionId: Int, sharedDataManager: SharedDataManager){
 
     val questionList = Constants.getQuestions()
     val currentQuestion = questionList!![questionId-1]
@@ -88,11 +89,22 @@ fun QuestionPage(navController: NavController, questionId: Int){
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Bottom
         ) {
-            if(questionId == questionList.size){
-                SubmitBtn(answerSelected, navController = navController, Screen.OpenQuestionPage.withArgs(1))
-            }
-            else{
-                SubmitBtn(answerSelected, navController = navController, Screen.QuestionPage.withArgs(questionId + 1))
+            Button(enabled = answerSelected, onClick = {
+                if(questionId == questionList.size){
+                    navController.navigate(Screen.OpenQuestionPage.withArgs(1))
+                }
+                else{
+                    navController.navigate(Screen.QuestionPage.withArgs(questionId + 1))
+                }
+                sharedDataManager.addAnswerToQuestionAppAnswer(selectedOption, questionId)
+                                                       },
+                modifier = Modifier
+                    .padding(10.dp)
+                    .fillMaxWidth(0.8f)
+                    .height(50.dp),
+                elevation = ButtonDefaults.elevation(defaultElevation = 5.dp, pressedElevation = 0.dp, disabledElevation = 0.dp),
+            ) {
+                Text(text = "Submit", fontSize = 20.sp)
             }
             Spacer(modifier = Modifier.padding(38.dp))
         }
@@ -158,9 +170,11 @@ private fun Answers(answers: List<String>){
    }
 }*/
 
+/*
 @Composable
-fun SubmitBtn(answerIsEmpty: Boolean, navController: NavController, nav_route : String){
-    Button(enabled = answerIsEmpty, onClick = {navController.navigate(nav_route) },
+fun SubmitBtn(answerIsEmpty: Boolean, navController: NavController, nav_route : String, selectedOption: String, sharedDataManager: SharedDataManager){
+    Button(enabled = answerIsEmpty, onClick = {navController.navigate(nav_route)
+                                              sharedDataManager.addAnswerToQuestionAppAnswer(selectedOption,)},
         modifier = Modifier
             .padding(10.dp)
             .fillMaxWidth(0.8f)
@@ -169,4 +183,4 @@ fun SubmitBtn(answerIsEmpty: Boolean, navController: NavController, nav_route : 
     ) {
         Text(text = "Submit", fontSize = 20.sp)
     }
-}
+}*/

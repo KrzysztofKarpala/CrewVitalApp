@@ -2,6 +2,7 @@ package com.pl.agh.kkarpala.crewvitalapp.di
 
 import android.app.Application
 import androidx.room.Room
+import com.pl.agh.kkarpala.crewvitalapp.core.questions.SharedDataManager
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.data.data_source.QuestionAppDatabase
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.data.repository.QuestionAppRepositoryImpl
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.domain.repository.QuestionAppRepository
@@ -34,7 +35,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideNoteUseCases(repository: QuestionAppRepository): QuestionAppUseCases{
+    fun provideQuestionAppUseCases(repository: QuestionAppRepository): QuestionAppUseCases{
         return QuestionAppUseCases(
             getAnswers = GetAnswers(repository),
             deleteAnswer = DeleteAnswer(repository),
@@ -42,4 +43,16 @@ object AppModule {
             getAnswer = GetAnswer(repository)
         )
     }
+
+/*    @Provides
+    @Singleton
+    fun provideSharedDataManager(sharedDataManager: SharedDataManager): QuestionAppUseCases{
+        return QuestionAppUseCases(
+            getAnswers = GetAnswers(repository),
+            deleteAnswer = DeleteAnswer(repository),
+            insertAnswer = InsertAnswer(repository),
+            getAnswer = GetAnswer(repository)
+        )
+    }*/
+
 }

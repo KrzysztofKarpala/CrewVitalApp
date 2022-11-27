@@ -13,13 +13,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.pl.agh.kkarpala.crewvitalapp.R
+import com.pl.agh.kkarpala.crewvitalapp.core.questions.SharedDataManager
+import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.result_page.ResultPageViewModel
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.util.Screen
 
 
 @Composable
-fun ResultPage(navController: NavController){
+fun ResultPage(navController: NavController,
+               viewModel: ResultPageViewModel = hiltViewModel(),
+               sharedDataManager: SharedDataManager){
+
+    val answersState = viewModel.answer.value
 
     val image = painterResource(id = R.drawable.cosmonaut)
 

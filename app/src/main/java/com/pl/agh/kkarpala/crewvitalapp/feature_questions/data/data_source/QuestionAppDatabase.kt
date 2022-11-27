@@ -17,9 +17,9 @@ abstract class QuestionAppDatabase : RoomDatabase() {
 
     companion object {
 
-        //private var INSTANCE: QuestionAppDatabase? = null
+        private var INSTANCE: QuestionAppDatabase? = null
 
-/*        fun getInstance(context: Context): QuestionAppDatabase {
+        fun getInstance(context: Context): QuestionAppDatabase {
             synchronized(this) {
                 var instance = INSTANCE
 
@@ -27,7 +27,7 @@ abstract class QuestionAppDatabase : RoomDatabase() {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         QuestionAppDatabase::class.java,
-                        "answers_list_database"
+                        "question_app_db"
                     ).fallbackToDestructiveMigration()
                         .build()
 
@@ -35,7 +35,7 @@ abstract class QuestionAppDatabase : RoomDatabase() {
                 }
                 return instance
             }
-        }*/
+        }
         const val DATABASE_NAME = "question_app_db"
     }
 }
