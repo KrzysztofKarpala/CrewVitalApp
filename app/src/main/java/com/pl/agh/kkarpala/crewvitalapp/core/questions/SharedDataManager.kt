@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.domain.model.QuestionAppAnswer
 
 class SharedDataManager {
-    var questionAppAnswer by mutableStateOf(QuestionAppAnswerDto(0,"asd","", "","","","","","",""))
+    var questionAppAnswer by mutableStateOf(QuestionAppAnswerDto(0,"","", "","","","","","",""))
         set
 /*    var questionAppAnswer by mutableStateOf<QuestionAppAnswer?>(null)
         set*/

@@ -42,6 +42,7 @@ fun OpenQuestionPage(navController: NavController,
 
     val answerState = viewModel.answerOpen.value
 
+
     val context = LocalContext.current
 
 
@@ -62,7 +63,8 @@ fun OpenQuestionPage(navController: NavController,
                         Screen.ResultPage.route)
                     }
                     else{
-                        Screen.OpenQuestionPage.withArgs(questionId + 1)
+                        navController.navigate(
+                        Screen.OpenQuestionPage.withArgs(questionId + 1))
                     }
 
                 }

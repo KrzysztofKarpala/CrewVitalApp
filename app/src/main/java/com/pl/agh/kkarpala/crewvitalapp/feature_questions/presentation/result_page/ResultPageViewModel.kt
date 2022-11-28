@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.pl.agh.kkarpala.crewvitalapp.core.questions.SharedDataManager
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.domain.model.InvalidAnswerException
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.domain.model.QuestionAppAnswer
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.domain.use_case.QuestionAppUseCases
@@ -20,8 +21,12 @@ class ResultPageViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel(){
 
-    private val _answer = mutableStateOf(ResultPageState())
-    val answer: State<ResultPageState> = _answer
+    fun setPageState(result : ResultPageState){
+        _answer.value = result
+    }
+
+    var _answer = mutableStateOf(ResultPageState())
+    var answer: State<ResultPageState> = _answer
 
     private val _eventFlow = MutableSharedFlow<UiEventResult>()
     val eventFlow = _eventFlow.asSharedFlow()

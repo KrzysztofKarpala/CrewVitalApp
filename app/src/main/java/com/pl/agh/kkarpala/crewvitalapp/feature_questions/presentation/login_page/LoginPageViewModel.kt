@@ -30,7 +30,8 @@ class LoginPageViewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<UiEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
-    private var currentAnswerId: Int? = null
+    var currentAnswerId: Int? = null
+
 
     init{
         savedStateHandle.get<Int>("answerId")?.let{ answerId ->
@@ -47,6 +48,7 @@ class LoginPageViewModel @Inject constructor(
             }
         }
     }
+
 
     fun onEventLogin(event: LoginPageEvent){
         when(event){
@@ -75,7 +77,7 @@ class LoginPageViewModel @Inject constructor(
                                 question_6 = "",
                                 question_7 = "",
                                 question_8 = "",
-                                answerId = currentAnswerId
+                                answerId = 1
                             )
                         )
                         _eventFlow.emit(UiEvent.SaveName)

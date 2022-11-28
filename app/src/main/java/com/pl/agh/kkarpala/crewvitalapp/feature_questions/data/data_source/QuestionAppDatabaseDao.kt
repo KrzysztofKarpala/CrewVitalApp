@@ -13,7 +13,7 @@ interface QuestionAppDatabaseDao {
     @Query("SELECT * from QuestionAppAnswer where answerId = :id")
     fun getAnswerById(id: Int): QuestionAppAnswer?
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(answer: QuestionAppAnswer)
 
     @Delete

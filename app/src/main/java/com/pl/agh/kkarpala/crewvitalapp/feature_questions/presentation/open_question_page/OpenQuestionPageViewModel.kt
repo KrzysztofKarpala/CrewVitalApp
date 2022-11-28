@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.pl.agh.kkarpala.crewvitalapp.core.questions.SharedDataManager
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.domain.model.InvalidAnswerException
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.domain.model.QuestionAppAnswer
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.domain.use_case.QuestionAppUseCases
@@ -65,7 +66,7 @@ class OpenQuestionPageViewModel @Inject constructor(
             }
             is OpenQuestionPageEvent.SaveOpenAnswer -> {
                 viewModelScope.launch {
-                    try {
+/*                    try {
                         questionAppUseCases.insertAnswer(
                             QuestionAppAnswer(
                                 userName = _answer.value.questionAnswer.userName,
@@ -79,16 +80,16 @@ class OpenQuestionPageViewModel @Inject constructor(
                                 question_8 = _answer.value.questionAnswer.question_8,
                                 answerId = _answer.value.questionAnswer.answerId
                             )
-                        )
+                        )*/
                         _eventFlow.emit(UiEventOpen.SaveOpenAnswer)
-                    } catch(ex: InvalidAnswerException){
+                    }/* catch(ex: InvalidAnswerException){
                         _eventFlow.emit(
                             UiEventOpen.ShowToast(
                                 message = ex.message ?: "Empty answer"
                             )
                         )
-                    }
-                }
+                    }*/
+                //}
             }
         }
     }

@@ -43,8 +43,9 @@ fun LoginPage(
 
     val context = LocalContext.current
 
-    sharedDataManager.addIdToQuestionAppAnswer(Random.nextInt(from = 0, until = Int.MAX_VALUE-1))
+    val answerId = Random.nextInt(from = 0, until = Int.MAX_VALUE-1)
 
+    sharedDataManager.addIdToQuestionAppAnswer(answerId)
 /*
     val name = remember { mutableStateOf("")}
 

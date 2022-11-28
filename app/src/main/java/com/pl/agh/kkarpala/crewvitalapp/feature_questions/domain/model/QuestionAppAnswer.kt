@@ -6,25 +6,25 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class QuestionAppAnswer (
-    @PrimaryKey val answerId: Int? = null,
+    @PrimaryKey var answerId: Int? = null,
 
-    val userName: String,
+    var userName: String,
 
-    val question_1: String,
+    var question_1: String,
 
-    val question_2: String,
+    var question_2: String,
 
-    val question_3: String,
+    var question_3: String,
 
-    val question_4: String,
+    var question_4: String,
 
-    val question_5: String,
+    var question_5: String,
 
-    val question_6: String,
+    var question_6: String,
 
-    val question_7: String,
+    var question_7: String,
 
-    val question_8: String,
+    var question_8: String,
 )
 
 class InvalidAnswerException(message: String): Exception(message)
