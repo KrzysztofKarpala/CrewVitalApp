@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.pl.agh.kkarpala.crewvitalapp.core.questions.Constants
 import com.pl.agh.kkarpala.crewvitalapp.core.questions.SharedDataManager
-import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.util.Screen
+import com.pl.agh.kkarpala.crewvitalapp.utils.Screen
 
 @Composable
 fun QuestionPage(navController: NavController, questionId: Int, sharedDataManager: SharedDataManager){

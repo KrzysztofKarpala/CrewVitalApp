@@ -18,29 +18,29 @@ object Constants {
         questionsList.add(question1)
         val question2 = Question(
             2,
-            "What is your favourite number?",
-            listOf("1",
-                "3",
-                "7",
-                "9")
+            "What was your sleep quality?",
+            listOf("Very good!",
+                "Good",
+                "Average",
+                "Bad")
         )
         questionsList.add(question2)
         val question3 = Question(
             3,
-            "What is the weather today?",
-            listOf("Cloudy",
-                "Foggy",
-                "Rainy",
-                "Sunny")
+            "How high is your stress level?",
+            listOf("Very high",
+                "High",
+                "Moderate",
+                "Low")
         )
         questionsList.add(question3)
         val question4 = Question(
             4,
-            "What is your favourite color?",
-            listOf("Blue",
-                "Green",
-                "Red",
-                "Yellow")
+            "Are you in time with your tasks?",
+            listOf("Yes",
+                "Almost",
+                "No",
+                "Hard to estimate")
         )
         questionsList.add(question4)
         return questionsList

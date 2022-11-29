@@ -21,7 +21,7 @@ import com.pl.agh.kkarpala.crewvitalapp.core.questions.SharedDataManager
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.result_page.ResultPageEvent
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.result_page.ResultPageState
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.result_page.ResultPageViewModel
-import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.util.Screen
+import com.pl.agh.kkarpala.crewvitalapp.utils.Screen
 import kotlinx.coroutines.flow.collectLatest
 
 

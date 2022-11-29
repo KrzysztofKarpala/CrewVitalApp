@@ -24,7 +24,7 @@ object OpenConstants {
         questionsList.add(question3)
         val question4 = OpenQuestion(
             4,
-            "How much do you weight?"
+            "How many hours did you sleep today?"
         )
         questionsList.add(question4)
         return questionsList
