@@ -4,7 +4,6 @@ import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -13,7 +12,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -21,13 +19,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.pl.agh.kkarpala.crewvitalapp.core.questions.OpenConstants
 import com.pl.agh.kkarpala.crewvitalapp.core.questions.SharedDataManager
-import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.login_page.LoginPageEvent
-import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.login_page.LoginPageViewModel
-import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.login_page.composable.EnterNameTextField
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.open_question_page.OpenQuestionPageEvent
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.open_question_page.OpenQuestionPageViewModel
 import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.open_question_page.composable.EnterAnswerTextField
-import com.pl.agh.kkarpala.crewvitalapp.feature_questions.presentation.util.Screen
+import com.pl.agh.kkarpala.crewvitalapp.utils.Screen
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
