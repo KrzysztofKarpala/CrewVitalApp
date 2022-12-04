@@ -52,7 +52,7 @@ class ResultPageViewModel @Inject constructor(
                             answerId = _answer.value.questionAnswer.answerId
                         )
                     )
-/*                    httpRetriver.sendData(
+                    httpRetriver.sendData(
                         QuestionAppAnswer(
                             userName = _answer.value.questionAnswer.userName,
                             question_1 = _answer.value.questionAnswer.question_1,
@@ -65,7 +65,7 @@ class ResultPageViewModel @Inject constructor(
                             question_8 = _answer.value.questionAnswer.question_8,
                             answerId = _answer.value.questionAnswer.answerId
                         )
-                    )*/
+                    )
                     _eventFlow.emit(UiEventResult.SaveAnswer)
 
                 }
