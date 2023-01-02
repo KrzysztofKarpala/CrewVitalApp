@@ -16,32 +16,32 @@ class SharedDataManager {
         questionAppAnswer.answerId= answer
     }
     fun addNameToQuestionAppAnswer(answer: String){
-        questionAppAnswer.userName = answer
+        questionAppAnswer.username = answer
     }
     fun addAnswerToQuestionAppAnswer(answer: String, questionId: Int){
         if(questionId == 1){
-            questionAppAnswer.question_1 = answer
+            questionAppAnswer.questionAnswer_1 = answer
         }
         else if(questionId == 2){
-            questionAppAnswer.question_2 = answer
+            questionAppAnswer.questionAnswer_2 = answer
         }
         else if(questionId == 3){
-            questionAppAnswer.question_3 = answer
+            questionAppAnswer.questionAnswer_3 = answer
         }
         else if(questionId == 4){
-            questionAppAnswer.question_4 = answer
+            questionAppAnswer.questionAnswer_4 = answer
         }
         else if(questionId == 5){
-            questionAppAnswer.question_5 = answer
+            questionAppAnswer.questionAnswer_5 = answer
         }
         else if(questionId == 6){
-            questionAppAnswer.question_6 = answer
+            questionAppAnswer.questionAnswer_6 = answer
         }
         else if(questionId == 7){
-            questionAppAnswer.question_7 = answer
+            questionAppAnswer.questionAnswer_7 = answer
         }
         else if(questionId == 8){
-            questionAppAnswer.question_8 = answer
+            questionAppAnswer.questionAnswer_8 = answer
         }
     }
 }

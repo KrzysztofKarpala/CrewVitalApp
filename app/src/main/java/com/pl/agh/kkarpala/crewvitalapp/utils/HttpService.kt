@@ -10,6 +10,6 @@ import retrofit2.http.POST
 
 interface HttpService {
     @Headers("Content-Type: application/json")
-    @POST("CrewVitalCheckApp/")
+    @POST("answers")
     suspend fun sendResults(@Body body: QuestionAppAnswer): Response<QuestionAppAnswer>
 }

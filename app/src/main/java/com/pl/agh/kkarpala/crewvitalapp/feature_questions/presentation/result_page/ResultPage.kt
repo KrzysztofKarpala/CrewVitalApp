@@ -33,15 +33,15 @@ fun ResultPage(navController: NavController,
     var result = ResultPageState()
 
     result.questionAnswer.answerId= sharedDataManager.questionAppAnswer.answerId
-    result.questionAnswer.userName= sharedDataManager.questionAppAnswer.userName
-    result.questionAnswer.question_1= sharedDataManager.questionAppAnswer.question_1
-    result.questionAnswer.question_2= sharedDataManager.questionAppAnswer.question_2
-    result.questionAnswer.question_3= sharedDataManager.questionAppAnswer.question_3
-    result.questionAnswer.question_4= sharedDataManager.questionAppAnswer.question_4
-    result.questionAnswer.question_5= sharedDataManager.questionAppAnswer.question_5
-    result.questionAnswer.question_6= sharedDataManager.questionAppAnswer.question_6
-    result.questionAnswer.question_7= sharedDataManager.questionAppAnswer.question_7
-    result.questionAnswer.question_8= sharedDataManager.questionAppAnswer.question_8
+    result.questionAnswer.userName= sharedDataManager.questionAppAnswer.username
+    result.questionAnswer.question_1= sharedDataManager.questionAppAnswer.questionAnswer_1
+    result.questionAnswer.question_2= sharedDataManager.questionAppAnswer.questionAnswer_2
+    result.questionAnswer.question_3= sharedDataManager.questionAppAnswer.questionAnswer_3
+    result.questionAnswer.question_4= sharedDataManager.questionAppAnswer.questionAnswer_4
+    result.questionAnswer.question_5= sharedDataManager.questionAppAnswer.questionAnswer_5
+    result.questionAnswer.question_6= sharedDataManager.questionAppAnswer.questionAnswer_6
+    result.questionAnswer.question_7= sharedDataManager.questionAppAnswer.questionAnswer_7
+    result.questionAnswer.question_8= sharedDataManager.questionAppAnswer.questionAnswer_8
 
     LaunchedEffect(Unit){
         viewModel.setPageState(result)
