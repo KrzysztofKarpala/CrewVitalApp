@@ -9,7 +9,7 @@ object Constants {
         val questionsList = ArrayList<Question>()
         val question1 = Question(
             1,
-            "How are you feeling today?",
+            "How are you feeling now?",
             listOf("Very good!",
             "Good",
             "Average",
@@ -19,10 +19,10 @@ object Constants {
         val question2 = Question(
             2,
             "What was your sleep quality?",
-            listOf("Very good!",
-                "Good",
+            listOf("Good",
                 "Average",
-                "Bad")
+                "Bad",
+                "I have answered today")
         )
         questionsList.add(question2)
         val question3 = Question(
