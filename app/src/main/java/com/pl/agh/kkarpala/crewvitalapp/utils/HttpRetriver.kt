@@ -14,7 +14,7 @@ class HttpRetriver {
     private val service: HttpService
 
     companion object{
-        const val BASE_URL = "https://crewvitalapplicationapi.osc-fr1.scalingo.io/"
+        const val BASE_URL = "TO DO"
     }
 
     init{
